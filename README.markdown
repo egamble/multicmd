@@ -8,11 +8,11 @@ Because command blocks obstinately continue to fail to accept multiple commands.
 
 ### Usage
 
-`cat cmds.txt | lein run -m multicmd.mung > munged.txt`
+`lein run -m multicmd.run.mung cmds.txt > munged.txt`
 
 Munge commands, one per line, into a single command.
 
-`cat munged.txt | lein run -m multicmd.demung > cmds.txt`
+`lein run -m multicmd.run.demung munged.txt > cmds.txt`
 
 Demunge a single munged command into its constituent commands.
 

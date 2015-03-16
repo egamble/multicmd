@@ -4,19 +4,30 @@
 
 (defn munge-cmds
   [cmds]
-  "foobar")
+  (let [n (count cmds)]
+    (apply str
+           (concat
+            ["summon MinecartCommandBlock ~ ~1 ~ {Riding:"]
+            (take (inc n)
+                  (repeat "{id:MinecartCommandBlock,Riding:"))
+            ["{id:FallingSand,TileID:157,Time:1}"]
+            (interleave (repeat "},Command:")
+                        cmds)
+            ["},Command:setblock ~ ~ ~ lava 7}"]))))
 
 (defn demunge-cmd
   [cmd]
-  ["foo" "bar"])
+  (butlast
+   (map (comp str/trim second)
+        (re-seq #",\s*Command\s*:([^}]*)" cmd))))
 
 (defmain mung
-  []
-  (let [cmds (str/split-lines (slurp *in*))]
+  [in]
+  (let [cmds (str/split-lines (slurp in))]
     (println (munge-cmds cmds))))
 
 (defmain demung
-  []
-  (let [munged-cmd (slurp *in*)]
+  [in]
+  (let [munged-cmd (slurp in)]
     (doseq [cmd (demunge-cmd munged-cmd)]
       (println cmd))))
