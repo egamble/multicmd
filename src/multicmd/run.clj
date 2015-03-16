@@ -4,16 +4,15 @@
 
 (defn munge-cmds
   [cmds]
-  (let [n (count cmds)]
-    (apply str
-           (concat
-            ["summon MinecartCommandBlock ~ ~1 ~ {Riding:"]
-            (take (inc n)
-                  (repeat "{id:MinecartCommandBlock,Riding:"))
-            ["{id:FallingSand,TileID:157,Time:1}"]
-            (interleave (repeat "},Command:")
-                        cmds)
-            ["},Command:setblock ~ ~ ~ lava 7}"]))))
+  (apply str
+         (concat
+          ["summon MinecartCommandBlock ~ ~1 ~ {Riding:"]
+          (take (inc (count cmds))
+                (repeat "{id:MinecartCommandBlock,Riding:"))
+          ["{id:FallingSand,TileID:157,Time:1}"]
+          (interleave (repeat "},Command:")
+                      cmds)
+          ["},Command:setblock ~ ~ ~ lava 7}"])))
 
 (defn demunge-cmd
   [cmd]
