@@ -10,7 +10,7 @@ Because command blocks obstinately continue to fail to accept multiple commands.
 
 `lein run -m multicmd.run.mung cmds.json > munged.txt`
 
-Munge the commands in `cmds.json` into a single command. `cmds.json` has the format `{"coords":"<x> <y> <z>","commands":["<first cmd>","<second cmd>",...]}`. `"coords"` specifies the location of a `MinecartCommandBlock` riding an activator rail that will execute the multiple commands. That location must be powered, for example by being on top of a redstone block. If `"coords"` is missing or `null`, the default location of `"~ ~1 ~"` will be used. 
+Munge the commands in `cmds.json` into a single command. `cmds.json` has the format `{"coords":"<x> <y> <z>","commands":["<first cmd>","<second cmd>",...]}`. `"coords"` specifies where a `MinecartCommandBlock` riding an activator rail will be summoned to execute the multiple commands. That location must be powered, for example by being on top of a redstone block. If `"coords"` is missing or `null`, the default location of `"~ ~1 ~"` will be used. 
 
 `lein run -m multicmd.run.demung munged.txt > cmds.json`
 
