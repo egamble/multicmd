@@ -26,12 +26,20 @@
     (map (comp s/trim second)
          (re-seq #",\s*Command\s*:([^}]*)" cmd)))})
 
-(defmain mung
+(defn munge-file
   [in]
   (let [json (ch/parse-string (slurp in) true)]
-    (println (munge-cmds (:commands json) (:coords json)))))
+    (munge-cmds (:commands json) (:coords json))))
+
+(defn demunge-file
+  [in]
+  (let [munged-cmd (slurp in)]
+    (ch/generate-string (demunge-cmd munged-cmd))))
+
+(defmain mung
+  [in]
+  (println (munge-file in)))
 
 (defmain demung
   [in]
-  (let [munged-cmd (slurp in)]
-    (println (ch/generate-string (demunge-cmd munged-cmd)))))
+  (println (demunge-file in)))
