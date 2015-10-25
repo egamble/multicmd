@@ -7,24 +7,25 @@
   [cmds coords]
   (apply str
          (concat
-          ["summon MinecartCommandBlock " (or coords "~ ~1 ~") " {Riding:"]
-          (take (inc (count cmds))
-                (repeat "{id:MinecartCommandBlock,Riding:"))
-          ["{id:FallingSand,Block:activator_rail,Time:1}"]
-          (interleave (repeat "},Command:")
-                      cmds)
-          ["},Command:setblock ~ ~ ~ lava 7}"])))
+          ["summon FallingSand " (or coords "~ ~1 ~") " {Block:activator_rail,Time:1,Passengers:[{id:MinecartCommandBlock,"]
+          (take (count cmds)
+                (repeat "Passengers:[{id:MinecartCommandBlock,"))
+          ["Command:"]
+          (interleave (reverse cmds)
+                      (repeat "}],Command:"))
+          ["setblock ~ ~ ~ lava 7}]}"])))
 
 (defn demunge-cmd
   [cmd]
   {:coords
-   (let [coords (second (re-seq #"^\s*summon\s*Minecartcommandblock([^{]*)" cmd))]
+   (let [coords (second (re-find #"^\s*summon\s*FallingSand([^{]*)" cmd))]
      (when coords
        (s/trim coords)))
    :commands
-   (butlast
-    (map (comp s/trim second)
-         (re-seq #",\s*Command\s*:([^}]*)" cmd)))})
+   (reverse
+    (butlast
+     (map (comp s/trim second)
+          (re-seq #",\s*Command\s*:([^}]*)" cmd))))})
 
 (defn munge-file
   [in]

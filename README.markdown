@@ -19,6 +19,10 @@ Demunge a single munged command into its constituent commands. The output is in 
 
 ### History
 
+#### Version 1.0.2:
+
+Now works with and requires MineCraft 1.9.
+
 #### Version 1.0.1:
 
 Input to `multicmd.run.mung` is now a JSON. The default location of `"~ ~1 ~"` can now be overridden.
