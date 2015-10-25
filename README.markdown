@@ -21,7 +21,7 @@ Demunge a single munged command into its constituent commands. The output is in 
 
 #### Version 1.0.2:
 
-Now works with and requires MineCraft 1.9.
+Now works with and requires MineCraft 1.9 or higher.
 
 #### Version 1.0.1:
 
