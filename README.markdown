@@ -4,7 +4,7 @@ Also demunges.
 
 ### Motivation
 
-Because command blocks obstinately continue to fail to accept multiple commands. Making `n` command blocks to run `n` commands is less fun than most fun things. For example, it's less fun than [Black Tuesday](http://www.thebruery.com/beer/black-tuesday/).
+Because command blocks obstinately continue to fail to accept multiple commands. Making `n` command blocks to run `n` commands is less fun than most fun things.
 
 ### Usage
 
