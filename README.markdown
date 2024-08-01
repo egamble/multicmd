@@ -4,7 +4,7 @@ Also demunges.
 
 ### Motivation
 
-Because command blocks obstinately continue to fail to accept multiple commands. Making `n` command blocks to run `n` commands is not much fun.
+Originally I made this because command blocks don't accept multiple commands. This is less useful now that Minecraft has functions.
 
 ### Usage
 
